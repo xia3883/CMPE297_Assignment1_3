@@ -4301,6 +4301,12 @@ static int emulator_intercept(struct x86_emulate_ctxt *ctxt,
 	return kvm_x86_ops->check_intercept(emul_to_vcpu(ctxt), info, stage);
 }
 
+
+static int emulator_hello_world_hypercall(void)
+{
+    return kvm_x86_ops->hello_world_hypercall(void);
+}
+
 static bool emulator_get_cpuid(struct x86_emulate_ctxt *ctxt,
 			       u32 *eax, u32 *ebx, u32 *ecx, u32 *edx)
 {

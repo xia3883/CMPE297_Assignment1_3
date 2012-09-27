@@ -7178,6 +7178,12 @@ static int vmx_check_intercept(struct kvm_vcpu *vcpu,
 	return X86EMUL_CONTINUE;
 }
 
+static in vmx_hello_world_hypercall(void)
+{
+      printk("hello world hypercall ! \n"); 
+      return 0;
+}
+
 static struct kvm_x86_ops vmx_x86_ops = {
 	.cpu_has_kvm_support = cpu_has_kvm_support,
 	.disabled_by_bios = vmx_disabled_by_bios,
@@ -7267,6 +7273,8 @@ static struct kvm_x86_ops vmx_x86_ops = {
 	.set_tdp_cr3 = vmx_set_cr3,
 
 	.check_intercept = vmx_check_intercept,
+
+        .hello_world_hypercall = vmx_hello_world_hypercall,
 };
 
 static int __init vmx_init(void)

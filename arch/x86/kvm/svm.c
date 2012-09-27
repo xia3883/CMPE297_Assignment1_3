@@ -4120,6 +4120,12 @@ static struct __x86_intercept {
 #undef POST_EX
 #undef POST_MEM
 
+static int svm_hello_world_hypercall(void)
+{
+     printk("hello world hypercall ! \n");
+     return 0;
+} 
+
 static int svm_check_intercept(struct kvm_vcpu *vcpu,
 			       struct x86_instruction_info *info,
 			       enum x86_intercept_stage stage)
@@ -4326,6 +4332,8 @@ static struct kvm_x86_ops svm_x86_ops = {
 	.set_tdp_cr3 = set_tdp_cr3,
 
 	.check_intercept = svm_check_intercept,
+
+        .hello_world_hypercall = svm_hello_world_hypercall,
 };
 
 static int __init svm_init(void)
